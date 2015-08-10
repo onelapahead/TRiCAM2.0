@@ -17,7 +17,7 @@ def post_img(image):
 def do_videos(from_dir, to_dir, save_time = 1):
 	for video_name in os.listdir(from_dir):
 		csv_file = to_dir + "/" + video_name[:-4] + ".csv"
-		if csv_file.exists():
+		if not os.path.isfile(csv_file):
 			f = open(text_file, 'w')
 			f.write("video_time,job_id\n")
 
@@ -42,3 +42,9 @@ def do_videos(from_dir, to_dir, save_time = 1):
 
 			f.close()
 
+def get_logos(from_dir, to_dir):
+	for csv in from_dir:
+		csv_file = from_dir + "/" + csv
+		csv_logo_file = to_dir + "/" csv[:-4] + "_logos.csv"
+		if not os.path.isfile(csv_logo_file):
+			
