@@ -39,5 +39,4 @@ def get_job_result(jobID):
   return get_job_request('result', jobID)  
 
 def recognize_logos(imgfile):
-  with open(imgfile, 'rb') as f:
-    return post_api_request('recognizeimages', files={'file': f})
+  return post_async_api_request('recognizeimages', files={'file': imgfile})

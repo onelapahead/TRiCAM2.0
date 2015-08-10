@@ -4,12 +4,10 @@ frame_grabber.py
 >>> python frame_grabber.py [from dir] [to dir] [frame capture rate]
 
 """
+import hpidol as hp
 
-def poster(frame, api_key):
-	#posting stuff
-	job_id = "cat!"
-	#more stuff
-	return job_id
+def post_img(image):
+	return hp.recognize_logos(image)
 
 
 if __name__ == "__main__":
@@ -56,7 +54,7 @@ if __name__ == "__main__":
 			if ((video_time/1000) - seconds_from_start) > 1:
 				
 				frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-				job_id = poster(frame, api_key)
+				job_id = post_img(frame, api_key)
 				f.write(str(video_time/1000) + "," + str(job_id) + "\n")
 				seconds_from_start += save_time
 
