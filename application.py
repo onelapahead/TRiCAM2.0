@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 from werkzeug import secure_filename
 import os
-#import frame_grabber as fg
+import frame_grabber as fg
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
-ALLOWED_EXTENSIONS = set(['mp4', 'png', 'jpg'])
+ALLOWED_EXTENSIONS = set(['mp4', 'png', 'jpg', 'mov'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -14,8 +14,9 @@ def index(filename=None):
     return render_template('index.html', filename=filename)
 
 @app.route('/present', methods=['GET', 'POST'])
-def show(filename=None):
-    return render_template('index2.html', filename=filename)
+def show():
+    results = fg.get_logos_matrix('./video_csvs', 'cats.csv')
+    return render_template('index2.html', results=results)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -30,7 +31,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('uploaded_file',
             #                        filename=filename))
-            #fg.do_videos(UPLOAD_FOLDER, './video_csvs') 
+            fg.do_videos(UPLOAD_FOLDER, './video_csvs', save_time=0.5) 
             return index(filename)
     return
 

@@ -35,11 +35,23 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">TRICAM</h1>
         <div class="row center">
-          {% if filename %}
-          <h5 class="header col s12 light">{{filename}} was successfully uploaded.</h5>
-          {% endif %}
+          <table>
+            <tr>
+              <th></th>
+              {% for video in results[results.keys()[0]] %}
+                <td>{{video}}</td>
+              {% endfor %}
+            </tr>
+            {% for key, value in results.iteritems() %}
+              <tr>
+                <th>{{key}}</th>
+                {% for i, j in value.iteritems() %}
+                  <td>{{j}}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
         </div>
 
         <script> $('#download-button').click(function () {

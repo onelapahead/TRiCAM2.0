@@ -40,8 +40,9 @@ def do_videos(from_dir, to_dir, save_time = 1):
 				
 				if ((video_time/1000) - seconds_from_start) > 1:
 					
-					frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-					frame = cv2.equalizeHist(frame)
+					#frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+					#frame = cv2.equalizeHist(frame)
+					frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 					scipy.misc.imsave("temp.jpg",frame)
 					#frame = Image.open("temp.jpg")
 					job_id = post_img(open("temp.jpg", 'rb'))
@@ -73,4 +74,4 @@ def get_logos_matrix(from_dir, to_file):
 
 	master_frame.to_csv(to_file)
 
-	return master_frame
+	return pd.DataFrame.to_dict(master_frame)
