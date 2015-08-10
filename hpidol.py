@@ -39,4 +39,14 @@ def get_job_result(jobID):
   return get_job_request('result', jobID)  
 
 def recognize_logos(imgfile):
-  return post_async_api_request('recognizeimages', files={'file': imgfile})
+  return post_async_api_request('recognizeimages', data={'image_type': 'complex_2d'}, files={'file': imgfile})
+
+def get_logos_result(jobID):
+  results = get_job_result(jobID)
+  if results['actions'][0]['status'] == 'finished':
+    logos = []
+    for logo in results['actions'][0]['result']['object']:
+      logos.append(logo['name'])
+    return logos
+  else:
+    return None
