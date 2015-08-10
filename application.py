@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from werkzeug import secure_filename
 import os
+#import frame_grabber as fg
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
@@ -12,7 +13,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index(filename=None):
     return render_template('index.html', filename=filename)
 
-@app.route('/')
+@app.route('/present', methods=['GET', 'POST'])
 def show(filename=None):
     return render_template('index2.html', filename=filename)
 
@@ -29,7 +30,8 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('uploaded_file',
             #                        filename=filename))
-            return show(filename)
+            #fg.do_videos(UPLOAD_FOLDER, './video_csvs') 
+            return index(filename)
     return
 
 if __name__ == "__main__":
