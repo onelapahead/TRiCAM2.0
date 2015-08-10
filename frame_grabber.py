@@ -47,15 +47,21 @@ def do_videos(from_dir, to_dir, save_time = 1):
 
 			f.close()
 
-def get_logos(from_dir, to_file):
-	
-	f = open(text_file, 'w')
+def get_logos_matrix(from_dir, to_file):
+	row_names = []
+	for csv in from_dir:
+		row_names.append(csv[:-4])
+
+	master_frame = pd.DataFrame(index = row_names)
 	for csv in from_dir:
 		csv_file = from_dir + "/" + csv
-		
 		df = pd.read_csv(csv_file)
-		
-		
-		for row in df:
-			found_logos.append(get_logos(row[1]))
+		found_logos = []
+		for item in df["job_id"]:
+			found_logos.append(get_logos(item)[0])
+		for item in found_logos:
+			if item not in master_frame:
+				master_frame[item] = 0
+			master_frame[item][csv[:-4]] = int(master_frame[item][csv[:-4]]) + 1
 
+	pd.master_frame.to_csv(to_file)
