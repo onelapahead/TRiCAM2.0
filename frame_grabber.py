@@ -7,10 +7,9 @@ frame_grabber.py
 
 def poster(frame, api_key):
 	#posting stuff
-	job_id = ""
+	job_id = "cat!"
 	#more stuff
 	return job_id
-
 
 
 if __name__ == "__main__":
@@ -22,18 +21,23 @@ if __name__ == "__main__":
 
 	from_dir = str(sys.argv[1])
 	to_dir = str(sys.argv[2])
+	
 	try: save_time = float(sys.argv[3])
 	except: save_time = 1
 	
+	print save_time
+
 	try:
 		os.makedirs(to_dir)
 	except OSError:
 		shutil.rmtree(to_dir)
 		os.makedirs(to_dir)
 	
+
 	for video_name in os.listdir(from_dir):
-		
-		text_file = to_dir + "/" + video_name[-4:] + ".csv"
+		print video_name
+
+		text_file = to_dir + "/" + video_name[:-4] + ".csv"
 		f = open(text_file, 'w')
 		f.write("video_time,job_id\n")
 
@@ -54,6 +58,6 @@ if __name__ == "__main__":
 				frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 				job_id = poster(frame, api_key)
 				f.write(str(video_time/1000) + "," + str(job_id) + "\n")
-				seconds_from_start += 1
+				seconds_from_start += save_time
 
 		f.close()
