@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Parallax Template - Materialize</title>
+  <title> TRiCAM 2.0 - Product Recognition </title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -111,7 +111,9 @@
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h4>Upload video(s) below</h4>
-
+{% if filename %}
+<p> {{filename}} was successfully uploaded. </p>
+{% endif %}
 <form action='/import' method='post' enctype='multipart/form-data'.>
     File: <input type='file' name='file_upload'>
     <input type='submit'>

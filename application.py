@@ -9,8 +9,8 @@ ALLOWED_EXTENSIONS = set(['mp4', 'png', 'jpg'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def index(filename=None):
+    return render_template('index.html', filename=filename)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -25,7 +25,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('uploaded_file',
             #                        filename=filename))
-            return render_template('index.html')
+            return index(filename)
     return
 
 if __name__ == "__main__":
