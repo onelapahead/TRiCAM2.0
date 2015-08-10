@@ -9,6 +9,7 @@ import hpidol as hp
 def post_img(image):
 	return hp.recognize_logos(image)
 
+
 if __name__ == "__main__":
 	import cv2, sys, shutil
 	import numpy as np
