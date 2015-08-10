@@ -12,6 +12,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index(filename=None):
     return render_template('index.html', filename=filename)
 
+@app.route('/')
+def show(filename=None):
+    return render_template('index2.html', filename=filename)
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -25,7 +29,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             #return redirect(url_for('uploaded_file',
             #                        filename=filename))
-            return index(filename)
+            return show(filename)
     return
 
 if __name__ == "__main__":

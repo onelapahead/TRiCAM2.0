@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Parallax Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link href="../static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">A TRiCAM Tool</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a>Home</a></li>
+
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Home</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">TRICAM</h1>
+        <div class="row center">
+          {% if filename %}
+          <h5 class="header col s12 light">{{filename}} was successfully uploaded.</h5>
+          {% endif %}
+        </div>
+
+        <script> $('#download-button').click(function () {
+    var divID = '#' + "formDiv";
+    $('html, body').animate({
+        scrollTop: $(divID).offset().top
+    }, 2000);
+});</script>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="../static/background11.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+
+
+
+
+
+  <div class="container" id = "formDiv">
+    <div class="section">
+
+
+
+    </div>
+  </div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="../static/js/materialize.js"></script>
+  <script src="../static/js/init.js"></script>
+
+  </body>
+</html>
