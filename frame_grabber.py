@@ -8,17 +8,22 @@ import hpidol as hp
 import cv2, sys, shutil
 import numpy as np
 import scipy.misc, os
+import pandas as pd
+from collections import Counter
 
 
 
 def post_img(image):
 	return hp.recognize_logos(image)
 
+def get_logos(job_id):
+	return hp.get_logos_result(job_id)
+
 def do_videos(from_dir, to_dir, save_time = 1):
 	for video_name in os.listdir(from_dir):
 		csv_file = to_dir + "/" + video_name[:-4] + ".csv"
 		if not os.path.isfile(csv_file):
-			f = open(text_file, 'w')
+			f = open(csv_file, 'w')
 			f.write("video_time,job_id\n")
 
 			video_file = from_dir + "/" + video_name
@@ -42,9 +47,15 @@ def do_videos(from_dir, to_dir, save_time = 1):
 
 			f.close()
 
-def get_logos(from_dir, to_dir):
+def get_logos(from_dir, to_file):
+	
+	f = open(text_file, 'w')
 	for csv in from_dir:
 		csv_file = from_dir + "/" + csv
-		csv_logo_file = to_dir + "/" csv[:-4] + "_logos.csv"
-		if not os.path.isfile(csv_logo_file):
-			
+		
+		df = pd.read_csv(csv_file)
+		
+		
+		for row in df:
+			found_logos.append(get_logos(row[1]))
+
