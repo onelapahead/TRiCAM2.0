@@ -1,0 +1,13 @@
+applications:
+- name: TriCAM
+  mem: 512M
+  # buildpack: https://github.com/ephony/heroku-buildpack-python.git
+  # stackato:
+  #   hooks:
+  #     post-staging:
+  #     - python application.py
+  #   ignores:
+  #   - '*.pyc'
+  #   - .git/
+  #   min_version:
+  #     client: 1.4.3
